@@ -1,0 +1,20 @@
+[DEFAULT]
+self_mac=
+
+API_URL=https://iot.aretas.ca/rest/
+
+API_USERNAME =uname
+API_PASSWORD =pwd
+
+[AESO_API]
+API_URL=https://api.aeso.ca/report/
+API_ACCESS_TOKEN=
+
+[API]
+batch_mode = True
+
+# the API reporting interval
+# even if we get packets more frequently, we only send once every
+# report_interval milliseconds
+# e.g. 10000 ms (10 seconds)
+report_interval = 20000
