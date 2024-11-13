@@ -12,4 +12,6 @@ Even more importantly, we can feed the realtime data into our forecasting micros
 
 Then, we can execute arb strategies and monitor performance in realtime as well.
 
+The current model, using one-shot Chronos, works with single intraday buy/sells (peak and minimum hour forecasts) and is able to generate a profit.
+
 More documentation to come.

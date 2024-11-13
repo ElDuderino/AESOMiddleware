@@ -10,8 +10,14 @@ config = AESOAPIConfig('config.cfg')
 
 api_query = AESOAPIQuery(config)
 
-start_date = "2023-10-10"
+today_date = datetime.today()
 
-results: list[PoolPriceReportItem] = api_query.get_pool_price_report(start_date)
+start_date = f"{today_date.year-1}-{today_date.month}-{today_date.day}"
+end_date = f"{today_date.year-1}-{today_date.month}-{today_date.day+2}"
+
+print(f"Start date: {start_date} End date: {end_date}")
+
+results: list[PoolPriceReportItem] = api_query.get_pool_price_report(start_date, end_date)
 
 print(results)
+print(len(results))

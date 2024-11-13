@@ -1,3 +1,5 @@
+import math
+
 from aeso_api_config import AESOAPIConfig
 import requests
 from requests.models import PreparedRequest
@@ -15,7 +17,7 @@ class AESOAPIQuery:
         self.api_config = api_config
         self.logger = logging.getLogger(__name__)
 
-    def get_pool_price_report(self, start_date, end_date=None) -> list[PoolPriceReportItem]:
+    def get_pool_price_report(self, start_date, end_date=None) -> list[PoolPriceReportItem] | None:
         """
         Fetch pool price report for the date range: startDate (yyyy-mm-dd) to endDate (yyyy-mm-dd).
         The endDate is optional. If endDate is omitted, fetched data will include the pool price values for all the
@@ -51,6 +53,8 @@ class AESOAPIQuery:
 
             for report_raw in json_response['return']['Pool Price Report']:
                 try:
+                    if report_raw['forecast_pool_price'] == '':
+                        report_raw['forecast_pool_price'] = math.nan
                     pool_price_item = PoolPriceReportItem(
                         report_raw['begin_datetime_utc'],
                         report_raw['begin_datetime_mpt'],
